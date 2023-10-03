@@ -25,4 +25,4 @@ $(function () {
   // TODO: Add code to display the current date in the header of the page.
 });
 
-currDay.text(dayjs());
+currDay.text(dayjs().format('dddd, MMMM D[th]'));
