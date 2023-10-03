@@ -29,10 +29,21 @@ $(function () {
 
 dayDisp.text(dayjs().format('dddd, MMMM D[th]'));
 
+// helper function to turn all classes off (past, present, future)
+function toggleOff(n) {
+  $(`#hour-${n}`).removeClass("past");
+  $(`#hour-${n}`).removeClass("future");
+  $(`#hour-${n}`).removeClass("present");
+}
+
 // iterate through hour divs
-  // check hour against curr hour
-  // change background color
 for (var i=9; i<=11; i++) {
+  toggleOff(i);
   let hourDiv = $(`#hour-${i}`);
-  console.log(hourDiv);
+  // check hour against curr hour
+  if (i < dayjs().hour()) {
+    // change background color accordingly
+    $(`#hour-${i}`).addClass("past");
+  }
+  
 }
