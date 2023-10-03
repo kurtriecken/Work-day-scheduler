@@ -6,8 +6,11 @@ const dayDisp = $('#currentDay');
 const currDay = dayjs();
 
 
-$(function () {
-  // TODO: Add a listener for click events on the save button. This code should
+$('#hour-block').on("click", function (e) {
+  if (e.target.tagName == 'BUTTON') {
+    alert("helplappelppp");
+  }
+      // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
   // function? How can DOM traversal be used to get the "hour-x" id of the
@@ -31,19 +34,29 @@ dayDisp.text(dayjs().format('dddd, MMMM D[th]'));
 
 // helper function to turn all classes off (past, present, future)
 function toggleOff(n) {
+  console.log("got here " + n);
   $(`#hour-${n}`).removeClass("past");
   $(`#hour-${n}`).removeClass("future");
   $(`#hour-${n}`).removeClass("present");
 }
 
 // iterate through hour divs
-for (var i=9; i<=11; i++) {
+for (var i=9; i<=17; i++) {
   toggleOff(i);
   let hourDiv = $(`#hour-${i}`);
   // check hour against curr hour
   if (i < dayjs().hour()) {
+    console.log("less");
     // change background color accordingly
-    $(`#hour-${i}`).addClass("past");
+    hourDiv.addClass("past");
+  }
+  else if (i > dayjs().hour()) {
+    console.log("more");
+    hourDiv.addClass("future");
+  }
+  else {
+    console.log("equal");
+    hourDiv.addClass("present");
   }
   
 }
