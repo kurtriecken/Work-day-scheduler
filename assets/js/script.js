@@ -2,7 +2,9 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 
-const currDay = $('#currentDay');
+const dayDisp = $('#currentDay');
+const currDay = dayjs();
+
 
 $(function () {
   // TODO: Add a listener for click events on the save button. This code should
@@ -25,4 +27,12 @@ $(function () {
   // TODO: Add code to display the current date in the header of the page.
 });
 
-currDay.text(dayjs().format('dddd, MMMM D[th]'));
+dayDisp.text(dayjs().format('dddd, MMMM D[th]'));
+
+// iterate through hour divs
+  // check hour against curr hour
+  // change background color
+for (var i=9; i<=11; i++) {
+  let hourDiv = $(`#hour-${i}`);
+  console.log(hourDiv);
+}
