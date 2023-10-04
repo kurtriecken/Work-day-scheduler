@@ -5,9 +5,19 @@
 $(function() {
   const dayDisp = $('#currentDay');
   const currDay = dayjs();
-  let 
+  let eventsArr = JSON.parse(localStorage.getItem('events'));
+
+  console.log(eventsArr);
   
-  
+  for (var i=0; i<eventsArr.length; i++) {
+    let hour = eventsArr[i].hour;
+    console.log("im in here baby");
+    console.log(`i is ${i}`);
+    console.log(`hour is ${hour}`);
+    console.log($(`#hour-${hour}`).children("textarea"));
+    console.log(eventsArr[i].event);
+    $(`#hour-${hour}`).children("textarea").val(eventsArr[i].event);
+  }
   
   $('#hour-block').on("click", function (e) {
     if (e.target.tagName == 'BUTTON') {
@@ -21,6 +31,8 @@ $(function() {
       if (eventArr == null) {
         eventArr = [];
       }
+      // Before pushing new event, erase old event at that hour IF it exists
+      // TODO
       eventArr.push(hourEvent);
       localStorage.setItem("events", JSON.stringify(eventArr));
       let message = $('<h4 class="text-center">Item added to LocalStorage!</h4>');
