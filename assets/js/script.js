@@ -5,13 +5,26 @@
 $(function() {
   const dayDisp = $('#currentDay');
   const currDay = dayjs();
+  let 
+  
   
   
   $('#hour-block').on("click", function (e) {
     if (e.target.tagName == 'BUTTON') {
       let hourInp = e.target.parentElement.children[1].value;
       let hourNum = e.target.parentElement.children[1].name;
-      
+      let hourEvent = {
+        hour: hourNum,
+        event: hourInp
+      };
+      let eventArr = localStorage.getItem('hourEvent');
+      if (eventArr == null) {
+        eventArr = [];
+      }
+      eventArr.push(hourEvent);
+      localStorage.setItem("events", JSON.stringify(eventArr));
+      let message = $('<h4 class="text-center">Item added to LocalStorage!</h4>');
+      $('#hour-block').prepend(message);
     }
         // TODO: Add a listener for click events on the save button. This code should
     // use the id in the containing time-block as a key to save the user input in
