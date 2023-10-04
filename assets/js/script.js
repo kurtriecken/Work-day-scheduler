@@ -11,11 +11,7 @@ $(function() {
   
   for (var i=0; i<eventsArr.length; i++) {
     let hour = eventsArr[i].hour;
-    console.log("im in here baby");
-    console.log(`i is ${i}`);
-    console.log(`hour is ${hour}`);
-    console.log($(`#hour-${hour}`).children("textarea"));
-    console.log(eventsArr[i].event);
+
     $(`#hour-${hour}`).children("textarea").val(eventsArr[i].event);
   }
   
@@ -53,7 +49,21 @@ $(function() {
   });
   
   // TODO: change the 'th' at the end to be appropriate for each day
-  dayDisp.text(dayjs().format('dddd, MMMM D[th]'));
+  let dateNum = currDay.date();
+  console.log(dateNum);
+  let suffix = 'th';
+
+  if (dateNum == 1 || dateNum == 21 || dateNum == 31) {
+    suffix = 'st';
+  }
+  else if (dateNum == 2 || dateNum == 22) {
+    suffix = 'nd';
+  }
+  else if (dateNum == 3 || dateNum == 23) {
+    suffix = 'rd';
+  }
+
+  dayDisp.text(dayjs().format(`dddd, MMMM D[${suffix}]`));
   
   // helper function to turn all classes off (past, present, future)
   function toggleOff(n) {
@@ -81,3 +91,13 @@ $(function() {
   }
 });
 
+// When the document is ready
+
+  // When a save button is clicked (line 46 html)
+    // Retrive value from the sibling element
+    // retrive value id attribute of the parent element as time
+    // store the value into local storage with time as the key
+    // display a notification by adding the class of show
+    // After 5 seconds, high the notification by removing class of show
+  
+  // Define a function to update the hour
