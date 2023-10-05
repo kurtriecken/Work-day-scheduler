@@ -3,7 +3,7 @@ $(function() {
 
   // Global varialbes
   const dayDisp = $('#currentDay');
-  const currDay = dayjs();
+  const currDay = dayjs().hour(12);
   let eventArr = JSON.parse(localStorage.getItem('events') || "[]");
   
   // Initialization of page
