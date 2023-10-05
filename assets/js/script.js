@@ -9,6 +9,11 @@ $(function() {
   // Initialization of page
   init();
 
+  // Refreshes the page every 15 minutes
+  setInterval(() => {
+    init();
+  }, 900000);
+
   function init() {
     eventsDisplay();
     dateSetup();
@@ -45,10 +50,10 @@ $(function() {
     for (var i=9; i<=17; i++) {
       $(`#hour-${i}`).removeClass("past present future");
       let hourDiv = $(`#hour-${i}`);
-      if (i < dayjs().hour()) {
+      if (i < currDay.hour()) {
         hourDiv.addClass("past");
       }
-      else if (i > dayjs().hour()) {
+      else if (i > currDay.hour()) {
         hourDiv.addClass("future");
       }
       else {
@@ -61,12 +66,17 @@ $(function() {
   // Save buttons functionality
   $('#hour-block').on("click", function (e) {
     if (e.target.tagName == 'BUTTON') {
+
+      // Gets text for event and hour block number
       let hourInp = e.target.parentElement.children[1].value.trim();
       let hourNum = e.target.parentElement.children[1].name;
       let hourEvent = {
         hour: hourNum,
         event: hourInp
       };
+
+      // Retrieves array of currently saved events and removes a duplicate
+      // at the hour being saved (if it exists)
       eventArr = JSON.parse(localStorage.getItem('events') || "[]");
       for (let i = 0; i < eventArr.length; i++) {
         if (eventArr[i].hour == hourNum) {
@@ -74,8 +84,11 @@ $(function() {
         }
       }
       
+      // Adds new event to array and local storage
       eventArr.push(hourEvent);
       localStorage.setItem("events", JSON.stringify(eventArr));
+
+      // Prints a message to the screen to confirm storage of event
       $('#storage-message').toggleClass("hidden");
       setTimeout(() => {
         $('#storage-message').toggleClass("hidden");
@@ -84,20 +97,4 @@ $(function() {
   
   });
 
-  
-  
-
-
-
 });
-
-// When the document is ready
-
-  // When a save button is clicked (line 46 html)
-    // Retrive value from the sibling element
-    // retrive value id attribute of the parent element as time
-    // store the value into local storage with time as the key
-    // display a notification by adding the class of show
-    // After 5 seconds, high the notification by removing class of show
-  
-  // Define a function to update the hour
