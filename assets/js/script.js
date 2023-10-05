@@ -1,20 +1,17 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
-
+// Jquery wrapper to ensure HTML is loaded before DOM manipulation occurs
 $(function() {
+  // Global varialbes
   const dayDisp = $('#currentDay');
   const currDay = dayjs();
-  let eventsArr = JSON.parse(localStorage.getItem('events'));
-
-  console.log(eventsArr);
+  let eventArr = JSON.parse(localStorage.getItem('events') || "[]");
   
-  for (var i=0; i<eventsArr.length; i++) {
-    let hour = eventsArr[i].hour;
-
-    $(`#hour-${hour}`).children("textarea").val(eventsArr[i].event);
+  // Populates calendar with data from local storage
+  for (var i=0; i<eventArr.length; i++) {
+    let hour = eventArr[i].hour;
+    $(`#hour-${hour}`).children("textarea").val(eventArr[i].event);
   }
   
+  // Save buttons functionality
   $('#hour-block').on("click", function (e) {
     if (e.target.tagName == 'BUTTON') {
       let hourInp = e.target.parentElement.children[1].value;
@@ -23,38 +20,24 @@ $(function() {
         hour: hourNum,
         event: hourInp
       };
-      let eventArr = JSON.parse(localStorage.getItem('events') || "[]");
+      eventArr = JSON.parse(localStorage.getItem('events') || "[]");
       for (let i = 0; i < eventArr.length; i++) {
         if (eventArr[i].hour == hourNum) {
           eventArr.splice(i,1);
         }
       }
       
-      // Before pushing new event, erase old event at that hour IF it exists
-      // TODO
-      
       eventArr.push(hourEvent);
       localStorage.setItem("events", JSON.stringify(eventArr));
-      let message = $('<h4 class="text-center">Appointment added to LocalStorage! &#10003</h4>');
-      $('#hour-block').prepend(message);
+      $('#storage-message').toggleClass("hidden");
+      setTimeout(() => {
+        $('#storage-message').toggleClass("hidden");
+      }, 5000);
     }
-        // TODO: Add a listener for click events on the save button. This code should
-    // use the id in the containing time-block as a key to save the user input in
-    // local storage. HINT: What does `this` reference in the click listener
-    // function? How can DOM traversal be used to get the "hour-x" id of the
-    // time-block containing the button that was clicked? How might the id be
-    // useful when saving the description in local storage?
-    //
-  
-    // TODO: Add code to get any user input that was saved in localStorage and set
-    // the values of the corresponding textarea elements. HINT: How can the id
-    // attribute of each time-block be used to do this?
   
   });
-  
-  // TODO: change the 'th' at the end to be appropriate for each day
+
   let dateNum = currDay.date();
-  console.log(dateNum);
   let suffix = 'th';
 
   if (dateNum == 1 || dateNum == 21 || dateNum == 31) {

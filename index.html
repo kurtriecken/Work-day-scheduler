@@ -1,3 +1,4 @@
+<!-- Meta elements -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -24,15 +25,19 @@
     <title>Work Day Scheduler</title>
   </head>
 
+  <!-- Page body -->
   <body>
+
+    <!-- Header and date display -->
     <header class="p-5 mb-4 text-center">
       <h1 class="display-3">Work Day Scheduler</h1>
       <p class="lead">A simple calendar app for scheduling your work day</p>
       <p id="currentDay" class="lead"></p>
-      <p>Appointment added to LocalStorage! &#10003</p>
+      <p id="storage-message" class="hidden">Appointment added to LocalStorage! &#10003</p>
     </header>
     <div class="container-fluid px-5" id="hour-block">
 
+      <!-- 9 code blocks to represent the 9 hour blocks of the working day -->
       <div id="hour-9" class="row time-block">
         <div class="col-2 col-md-1 hour text-center py-3">9AM</div>
         <textarea class="col-8 col-md-10 description" rows="3" name="9"> </textarea>
@@ -106,11 +111,13 @@
       </div>
     </div>
 
+    <!-- Scripting tags to link to JQuery and Day.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
     integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
     crossorigin="anonymous"></script>
 
+    <!-- Link to internal javaScript file -->
     <script src="./assets/js/script.js"></script>
   </body>
 </html>

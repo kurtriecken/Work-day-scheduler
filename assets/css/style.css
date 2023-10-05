@@ -1,3 +1,4 @@
+/* Element stylings */
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
@@ -10,6 +11,12 @@ textarea {
   color: #000000;
   border-left: 1px solid black;
   padding: 10px;
+}
+
+/* Class stylings */
+/* Toggle to show or display local storage message */
+.hidden {
+  color: white;
 }
 
 .description {
@@ -30,6 +37,7 @@ textarea {
   border-top: 1px dashed #000000;
 }
 
+/* Colorings for time blocks in the past, current hour, or future */
 .past {
   background-color: #d3d3d3;
   color: white;
