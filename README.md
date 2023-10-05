@@ -10,7 +10,7 @@ No installation is necessary! Follow the following links to the github repositor
 
 Github repository: https://github.com/kurtriecken/Work-day-scheduler
 
-Deployed site: https://kurtriecken.github.io/Work-day-scheduler/
+Deployed site: https://kurtriecken.github.io/Work-day-scheduler
 
 ## Usage
 
@@ -35,9 +35,7 @@ If you have any questions or if my site does not function properly on your devic
 
 ## Credits
 
-Created by kurtriecken (github.com/kurtriecken)
-
-The *About Me* section was formulated using OpenAI's ChaptGPT v3.5 and then restructured and reformatted by kurtriecken.
+Refactored by kurtriecken (github.com/kurtriecken)
 
 ## License
 
