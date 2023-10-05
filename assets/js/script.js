@@ -23,15 +23,19 @@ $(function() {
         hour: hourNum,
         event: hourInp
       };
-      let eventArr = localStorage.getItem('hourEvent');
-      if (eventArr == null) {
-        eventArr = [];
+      let eventArr = JSON.parse(localStorage.getItem('events') || "[]");
+      for (let i = 0; i < eventArr.length; i++) {
+        if (eventArr[i].hour == hourNum) {
+          eventArr.splice(i,1);
+        }
       }
+      
       // Before pushing new event, erase old event at that hour IF it exists
       // TODO
+      
       eventArr.push(hourEvent);
       localStorage.setItem("events", JSON.stringify(eventArr));
-      let message = $('<h4 class="text-center">Item added to LocalStorage!</h4>');
+      let message = $('<h4 class="text-center">Appointment added to LocalStorage! &#10003</h4>');
       $('#hour-block').prepend(message);
     }
         // TODO: Add a listener for click events on the save button. This code should
